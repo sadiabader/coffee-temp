@@ -8,13 +8,13 @@ if(isset($_POST['register'])){
 
 $pass = password_hash($user_pass, PASSWORD_BCRYPT);
 
-$email_check = "select * from admin_signup where email = '$user_email'";
+$email_check = "select * from admin_reg where email = '$user_email'";
 $result = mysqli_query($connection, $email_check);
 if(mysqli_num_rows($result) > 0){
   echo "<script> alert('Email already exist')</script>";
 }
 else{
-  $insert_data = "INSERT INTO `admin_signup` (`name`, `email`, `password`) VALUES ('$user_name', '$user_email', '$pass')";
+  $insert_data = "INSERT INTO `admin_reg` (`name`, `email`, `password`) VALUES ('$user_name', '$user_email', '$pass')";
   $connect = mysqli_query($connection, $insert_data);
 }
 

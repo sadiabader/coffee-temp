@@ -1,4 +1,63 @@
+
+<?php
+include('config.php');
+include('header.php');
+if(isset($_POST['Login'])){
+    $user_email = $_POST['email'];
+    $user_pass = $_POST['password'];
+
+$query = "SELECT * FROM `users` where email = '$user_email' AND
+ password = '$user_pass'";
+
+$res = mysqli_query($connection, $query);
+//print_r($res);
+if(mysqli_num_rows($res) > 0){
+    while($row = mysqli_fetch_assoc($res)){
+        session_start();
+        $_SESSION['username'] = $row['name'];
+        header('location:http://localhost/classwork_php/crud/userdata.php');
+    }
+}
+else{
+    echo "<script> alert('invalid username/password </script>";
+}
+}
+
+
+
+
+?>
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <title>login page</title>
+</head>
+<body>
+<div class="container">
+<form action="<?php echo $_SERVER['PHP_SELF'];?>"method="post" class="form-group">
+<input type="text" name="gender" class="form-control">
+<label for="email"> Email</label>
+<input type="email" name="email" class="form-control">
+<label for="password"> Password</label>
+<input type="passwprd" name="password" class="form-control">
+<input class="btn btn-success" type="submit" value="Login" name="Login">
+</form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
@@ -53,7 +112,7 @@
 	  </nav>
     <!-- END nav -->
 
-    <section class="home-slider owl-carousel">
+    <!-- <section class="home-slider owl-carousel">
 
       <div class="slider-item" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
@@ -97,17 +156,17 @@
                                 <button class="btn btn-primary py-3 px-4">Login</button>
 						    </div>
 					</div>
-                </div>
+                </div> -->
 
                
-	          </form><!-- END -->
-          </div> <!-- .col-md-8 -->
-          </div>
+	          <!-- </form><!-- END -->
+          <!-- </div> .col-md-8 -->
+          <!-- </div>
         </div>
       </div>
-    </section> <!-- .section -->
+    </section> .section --> 
 
-    <footer class="ftco-footer ftco-section img">
+    <!-- <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
@@ -174,20 +233,20 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 text-center">
+          <div class="col-md-12 text-center"> -->
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <!-- <p>Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
+          <!-- </div>
         </div>
       </div>
-    </footer>
+    </footer> --> 
     
   
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
   <script src="js/jquery.min.js"></script>
@@ -226,9 +285,9 @@
 		          
 		            // Increment
 		        
-		    });
+		    }); -->
 
-		     $('.quantity-left-minus').click(function(e){
+		     <!-- $('.quantity-left-minus').click(function(e){
 		        // Stop acting like a button
 		        e.preventDefault();
 		        // Get the field name
@@ -247,4 +306,4 @@
 
     
   </body>
-</html>
+</html> --> 
