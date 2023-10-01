@@ -15,7 +15,7 @@ if(mysqli_num_rows($res) > 0){
     while($row = mysqli_fetch_assoc($res)){
         session_start();
         $_SESSION['username'] = $row['name'];
-        header('location:http://localhost/classwork_php/crud/userdata.php');
+        
     }
 }
 else{

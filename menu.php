@@ -280,148 +280,198 @@
 
 		              <div class="tab-pane fade show active" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
 		                <div class="row">
+                          <?php
+						  $limit = 3;
+						  if(isset($_GET['pg'])){
+							$get_pg = $_GET['pg'];
+						  }else{
+							$get_pg = 1;
+						  }
+						 
+						  $start_page = ($get_pg =1) * $limit;
+						  $productfetch = "SELECT * from product";
+						  $runquery = mysqli_query($connection, $productfetch);
+						  if(mysqli_num_rows($runquery) > 0){
+							while($row = mysqli_fetch_assoc($runquery)){
+						  
+						  ?>
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-1.jpg);"></a>
+		              				<a href="#" class="menu-img img mb-4" style="background-image: url<?php echo $row['image']?>"></a>
 		              				<div class="text">
-		              					<h3><a href="#">Lemonade Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		              					<h3><a href="#"><?php echo $row['tittle']?></a></h3>
+		              					<p><?php echo $row['description']?></p>
+		              					<p class="price"><span><?php echo $row['price']?></span></p>
+		              					<!-- <p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p> -->
 		              				</div>
 		              			</div>
 		              		</div>
+							<?php
+							}
+						}
+							
+							?>
 		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Pineapple Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Soda Drinks</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-4.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Lemonade Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-5.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Pineapple Juice</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-6.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Soda Drinks</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
 
-		              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
-		                <div class="row">
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-1.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-2.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-3.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-4.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-5.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              		<div class="col-md-4 text-center">
-		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-6.jpg);"></a>
-		              				<div class="text">
-		              					<h3><a href="#">Hot Cake Honey</a></h3>
-		              					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-		              					<p class="price"><span>$2.90</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
-		              				</div>
-		              			</div>
-		              		</div>
-		              	</div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
+							<?php
+							$pagination = "SELECT * from product";
+							$runpagination mysqli_query($connection, $pagination);
+							if(mysqli_num_rows($runpagination) > 0){
+								$total_records = mysqli_num_rows($connection, $runpagination);
+								$total_pages = ceil($total_recors / $limit);
+								echo '<ul class="pagination">';
+								if($get_pg > 1){
+								echo '<li class="page-item"><a class="page-link btn btn-primary" href="menu.php?pg=',($get_pg-1),'">Previous</a></l>';
+							}
+							for($i = 1; $i <= $total_pages; $i++){
+                             $active = $i ==$get_pg? "active";
+							 echo '<li class="page-item"><a class="page-link btn btn-primary" href="menu.php?pg=',$i,'">',$i,'</a></li>';
+							}
+                            if($get_pg < $total_pages){
+                                 echo '<li class="page-item"><a class="page-link btn btn-primary" href="menu.php?pg=',,($get_pg-1),'"</a></li>';
+							}
+							echo '</ul>';
+				          	}
+							
+						
+<ul>
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">next</a></li>
+  
+				</ul>			
+							
+							?>
+		        //       			<!-- <div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-2.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Pineapple Juice</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-3.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Soda Drinks</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-4.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Lemonade Juice</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-5.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Pineapple Juice</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/drink-6.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Soda Drinks</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       	</div>
+		        //       </div>
+
+		        //       <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+		        //         <div class="row">
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-1.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-2.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-3.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-4.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-5.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       		<div class="col-md-4 text-center">
+		        //       			<div class="menu-wrap">
+		        //       				<a href="#" class="menu-img img mb-4" style="background-image: url(images/dessert-6.jpg);"></a>
+		        //       				<div class="text">
+		        //       					<h3><a href="#">Hot Cake Honey</a></h3>
+		        //       					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+		        //       					<p class="price"><span>$2.90</span></p>
+		        //       					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		        //       				</div>
+		        //       			</div>
+		        //       		</div>
+		        //       	</div>
+		        //       </div>
+		        //     </div>
+		        //   </div>
+		        // </div> -->
 		      </div>
 		    </div>
     	</div>
