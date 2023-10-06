@@ -1,94 +1,64 @@
 <?php
 session_start();
-
-if(!isset($_SESSION['useremail'])){
-    header('location:http://localhost/coffeetemp-main-20230925T213421Z-001/coffeetemp-main/login.php');
+if(!isset($_SESSION["useremail"])){
+    header('location:http://localhost/coffee-website/login.php');
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>hightech</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- awesome fontfamily -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   </head>
-   <!-- body -->
-   <body class="main-layout inner_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="" /></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
-         <div class="header">
-            <div class="container-fluid">
-               <div class="row d_flex">
-                  <div class=" col-md-2 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.php"><img src="images/logo.png" alt="#" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-8 col-sm-9">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item">
-                                 <a class="nav-link" href="index.php">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.php">About</a>
-                              </li>
-                              
-                              <li class="nav-item">
-                                 <a class="nav-link" href="portfolio.php">Portfolio </a>
-                              </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="contact.php">Contact Us</a>
-                              </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="login.php">LogOut</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-                  <!-- <div class="col-md-2 d_none">
-                     <ul class="email text_align_right">
-                        <li> <a href="Javascript:void(0)"> Login </a></li>
-                        <li> <a href="Javascript:void(0)"> <i class="fa fa-search" style="cursor: pointer;" aria-hidden="true"> </i></a> </li>
-                     </ul>
-                  </div> -->
-               </div>
-            </div>
-         </div>
-      </header>
-   </body>
+  <head>
+    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.php">Coffee<small>Blend</small></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="menu.php" class="nav-link">Menu</a></li>
+	          <li class="nav-item"><a href="services.php" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+	         
+	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+	          <li class="nav-item cart"><a href="cart.php" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
+			  <li class="nav-item"><a href="login.php" class="nav-link">login</a></li>
+			  <li class="nav-item"><a href="register.php" class="nav-link">register</a></li>
+			  <li class="nav-item"><a href="logout.php" class="nav-link"> Logout</a></li>
+
+	        </ul>
+	      </div>
+		</div>
+	  </nav>
+  </body>
 </html>
+    <!-- END nav -->

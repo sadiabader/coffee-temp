@@ -1,63 +1,50 @@
-
 <?php
 include('config.php');
-include('header.php');
-if(isset($_POST['Login'])){
-    $user_email = $_POST['email'];
-    $user_pass = $_POST['password'];
 
-$query = "SELECT * FROM `users` where email = '$user_email' AND
- password = '$user_pass'";
-
-$res = mysqli_query($connection, $query);
-//print_r($res);
-if(mysqli_num_rows($res) > 0){
-    while($row = mysqli_fetch_assoc($res)){
-        session_start();
-        $_SESSION['username'] = $row['name'];
-        
-    }
+if(isset($_POST['login'])){
+$email = $_POST['email'];
+$pass = $_POST['password'];
+$sql = "SELECT * from admin_reg where email = '$email'";
+$result = mysqli_query($connection, $sql);
+if(mysqli_num_rows($result) > 0){
+  $row = mysqli_fetch_assoc($result);
+  $dbpass = $row['pass'];
+  $pass_Decode = password_verify($pass, $dbpass);
+  if($pass_Decode){
+    session_start();
+    $_SESSION["username"] = $row['username'];
+    $_SESSION["email"] = $row['email'];
+    echo "<script> alert('Login successful');</script>";
+    header('location:http://localhost/coffeetemp-main/index.php');
+  }else{
+    echo "login failed";
+>>>>>>> dfc29f9c356aa6f2aeffe8aea5f7b383782a308f
+  }
+  else{
+    echo "<script>alert('login successful')</script>";
+  }
+  
 }
-else{
-    echo "<script> alert('invalid username/password </script>";
-}
-}
+// $sql = "SELECT * from userreg where email = '$email'";
+// $res = mysqli_query($connection, $sql);
 
+// if(mysqli_num_rows($res) > 0){
+//   $row = mysqli_fetch_assoc($res);
+//   $db_pass = $row['pass'];
+//   $pass_Decode = password_verify($pass, $db_pass);
+//   if($pass_Decode){
+//     echo "<script> alert('Login successful');</script>";
+//     header('location:http://localhost/coffee-website/index.php');
+//   }else{
+//     echo "login failed";
+//   }
 
+// }
+}
 
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <title>login page</title>
-</head>
-<body>
-<div class="container">
-<form action="<?php echo $_SERVER['PHP_SELF'];?>"method="post" class="form-group">
-<input type="text" name="gender" class="form-control">
-<label for="email"> Email</label>
-<input type="email" name="email" class="form-control">
-<label for="password"> Password</label>
-<input type="passwprd" name="password" class="form-control">
-<input class="btn btn-success" type="submit" value="Login" name="Login">
-</form>
-</div>
-</body>
-</html>
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
@@ -88,31 +75,13 @@ else{
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	         
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
-            <li class="nav-item"><a href="login.html" class="nav-link">login</a></li>
-            <li class="nav-item"><a href="register.html" class="nav-link">register</a></li>
+  <?php
 
-	        </ul>
-	      </div>
-		  </div>
-	  </nav>
+include('header1.php');
+?>
     <!-- END nav -->
 
-    <!-- <section class="home-slider owl-carousel">
+    <section class="home-slider owl-carousel">
 
       <div class="slider-item" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
@@ -121,7 +90,7 @@ else{
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             	<h1 class="mb-3 mt-5 bread">Login</h1>
-	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Login</span></p>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Login</span></p>
             </div>
 
           </div>
@@ -133,40 +102,40 @@ else{
       <div class="container">
         <div class="row">
           <div class="col-md-12 ftco-animate">
-			<form action="#" class="billing-form ftco-bg-dark p-3 p-md-5">
+			<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5">
 				<h3 class="mb-4 billing-heading">Login</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-12">
 	                <div class="form-group">
 	                	<label for="Email">Email</label>
-	                  <input type="text" class="form-control" placeholder="Email">
+	                  <input type="text" class="form-control" name="email" placeholder="Email">
 	                </div>
 	              </div>
                  
 	              <div class="col-md-12">
 	                <div class="form-group">
 	                	<label for="Password">Password</label>
-	                    <input type="password" class="form-control" placeholder="Password">
+	                    <input type="password" class="form-control" name="password" placeholder="Password">
 	                </div>
 
                 </div>
                 <div class="col-md-12">
                 	<div class="form-group mt-4">
 							<div class="radio">
-                                <button class="btn btn-primary py-3 px-4">Login</button>
+                                <button name="login" class="btn btn-primary py-3 px-4">Login</button>
 						    </div>
 					</div>
-                </div> -->
+                </div>
 
                
-	          <!-- </form><!-- END -->
-          <!-- </div> .col-md-8 -->
-          <!-- </div>
+	          </form><!-- END -->
+          </div> <!-- .col-md-8 -->
+          </div>
         </div>
       </div>
-    </section> .section --> 
+    </section> <!-- .section -->
 
-    <!-- <footer class="ftco-footer ftco-section img">
+    <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
@@ -233,20 +202,20 @@ else{
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 text-center"> -->
+          <div class="col-md-12 text-center">
 
-            <!-- <p>Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          <!-- </div>
+          </div>
         </div>
       </div>
-    </footer> --> 
+    </footer>
     
   
 
   <!-- loader -->
-  <!-- <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
   <script src="js/jquery.min.js"></script>
@@ -267,7 +236,7 @@ else{
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
 
-  <script>
+  <!-- <script>
 		$(document).ready(function(){
 
 		var quantitiy=0;
@@ -285,9 +254,9 @@ else{
 		          
 		            // Increment
 		        
-		    }); -->
+		    });
 
-		     <!-- $('.quantity-left-minus').click(function(e){
+		     $('.quantity-left-minus').click(function(e){
 		        // Stop acting like a button
 		        e.preventDefault();
 		        // Get the field name
@@ -302,8 +271,8 @@ else{
 		    });
 		    
 		});
-	</script>
+	</script> -->
 
     
   </body>
-</html> --> 
+</html>
